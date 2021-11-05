@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Formulario Consulta Bencinas{% endblock %}
+{% block content %}
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Formulario de consulta Bencinas</h1>
+        <div class="row">
+            <div class="col-4">
+                <form method="post">{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="sel-region" class="form-label">Región</label>
+                        <select class="form-select" aria-label="Default select example" id="sel-region"
+                                name="sel-region">
+                            <option selected value="0">Todas las regiones</option>
+                            <option value="01">Tarapacá</option>
+                            <option value="02">Antofagasta</option>
+                            <option value="03">Atacama</option>
+                            <option value="04">Coquimbo</option>
+                            <option value="05">Valparaíso</option>
+                            <option value="06">Libertador General Bernardo O’Higgins</option>
+                            <option value="07">Maule</option>
+                            <option value="08">Biobío</option>
+                            <option value="09">Araucanía</option>
+                            <option value="10">Los Lagos</option>
+                            <option value="11">Aysen del General Carlos Ibañez del campo</option>
+                            <option value="12">Magallanes y Antártica Chilena</option>
+                            <option value="13">Metropolitana de Santiago</option>
+                            <option value="14">Los Ríos</option>
+                            <option value="15">Arica y Parinacota</option>
+                            <option value="16">Región de Ñuble</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Razón Social</th>
+            <th scope="col">Dirección Calle</th>
+            <th scope="col">Número</th>
+            <th scope="col">Nombre Comuna</th>
+            <th scope="col">Nombre Región</th>
+            <th scope="col">Precios</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for bencina in bencina_list %}
+            <tr>
+                <td>{{ bencina.razon_social }}</td>
+                <td>{{ bencina.direccion_calle }}</td>
+                <td>{{ bencina.direccion_numero }}</td>
+                <td>{{ bencina.nombre_comuna }}</td>
+                <td>{{ bencina.nombre_region }}</td>
+                <td>{{ bencina.precios}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
